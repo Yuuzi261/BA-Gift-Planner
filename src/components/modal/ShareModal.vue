@@ -29,7 +29,7 @@
 import { ref, computed, toRefs } from 'vue'
 import { useSettingStore } from '@store/setting'
 import { storeToRefs } from 'pinia'
-import { domToPng } from 'modern-screenshot'  
+import { convertElementToJpg } from '@utils/domToImage.js'
 import { getAssetsFile } from '@utils/getAssetsFile'
 import { useI18n } from '@composables/useI18n.js'
 import { useModal } from '@composables/useModal.js'
@@ -67,24 +67,17 @@ const copyLink = () => {
 }
 
 const downloadScreenshot = async () => {
-  const rect = shareContent.value.getBoundingClientRect();
-  const options = {
-    quality: 1.0,
-    backgroundColor: isDarkMode.value ? '#1e2a38' : '#f0f4f8',
-    width: rect.width,
-    height: rect.height,
-    type: 'image/jpeg',
-    scale: window.devicePixelRatio,
-  };
-
+  if (!shareContent.value) {
+    console.error('Share content element not found.')
+    return
+  }
   try {
-    const dataUrl = await domToPng(shareContent.value, options);
-    const link = document.createElement('a');
-    link.href = dataUrl;
-    link.download = 'gift-recommendations.jpg';
-    link.click();
+    await convertElementToJpg(shareContent.value, {
+      fileName: 'gift-recommendations.jpg',
+      backgroundColor: isDarkMode.value ? '#1e2a38' : '#f0f4f8',
+    })
   } catch (error) {
-    console.error('Error during JPG conversion:', error);
+    console.error('Failed to download screenshot:', error)
   }
 };
 </script>
