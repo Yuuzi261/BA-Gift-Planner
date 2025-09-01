@@ -29,7 +29,7 @@
 import { ref, computed, toRefs } from 'vue'
 import { useSettingStore } from '@store/setting'
 import { storeToRefs } from 'pinia'
-import domtoimage from 'dom-to-image'
+import { domToPng } from 'modern-screenshot'  
 import { getAssetsFile } from '@utils/getAssetsFile'
 import { useI18n } from '@composables/useI18n.js'
 import { useModal } from '@composables/useModal.js'
@@ -66,18 +66,27 @@ const copyLink = () => {
   alert('Link copied to clipboard!')
 }
 
-const downloadScreenshot = () => {
-  domtoimage.toPng(shareContent.value)
-    .then(function (dataUrl) {
-      const link = document.createElement('a')
-      link.download = 'gift-recommendations.png'
-      link.href = dataUrl
-      link.click()
-    })
-    .catch(function (error) {
-      console.error('oops, something went wrong!', error)
-    })
-}
+const downloadScreenshot = async () => {
+  const rect = shareContent.value.getBoundingClientRect();
+  const options = {
+    quality: 1.0,
+    backgroundColor: isDarkMode.value ? '#1e2a38' : '#f0f4f8',
+    width: rect.width,
+    height: rect.height,
+    type: 'image/jpeg',
+    scale: window.devicePixelRatio,
+  };
+
+  try {
+    const dataUrl = await domToPng(shareContent.value, options);
+    const link = document.createElement('a');
+    link.href = dataUrl;
+    link.download = 'gift-recommendations.jpg';
+    link.click();
+  } catch (error) {
+    console.error('Error during JPG conversion:', error);
+  }
+};
 </script>
 
 <style scoped>
