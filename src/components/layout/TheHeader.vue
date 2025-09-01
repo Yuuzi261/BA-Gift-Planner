@@ -7,6 +7,9 @@
       <button class="icon-btn" @click="$emit('openModal')">
         <img :src="addStudentsIconUrl" :alt="t('header.selectStudentsAlt')" draggable="false" />
       </button>
+      <button class="icon-btn" @click="$emit('openShareModal')">
+        <img :src="shareIconUrl" :alt="t('header.shareAlt')" draggable="false" />
+      </button>
       <button class="icon-btn settings-btn" @click="handleSettingsClick">
         <img
           :src="gearIconUrl"
@@ -89,7 +92,7 @@
 
   const { t, currentLocale: locale } = useI18n()
 
-  const emit = defineEmits(['openModal', 'openSettingsModal'])
+  const emit = defineEmits(['openModal', 'openSettingsModal', 'openShareModal'])
 
   const settingStore = useSettingStore()
   const { theme } = storeToRefs(settingStore)
@@ -99,6 +102,7 @@
   const isMobile = computed(() => width.value <= 768)
 
   const addStudentsIconUrl = computed(() => getAssetsFile('icon/add_students.svg'))
+  const shareIconUrl = computed(() => getAssetsFile('icon/share.svg'))
   const gearIconUrl = computed(() => getAssetsFile('icon/gear.svg'))
 
   const logoUrl = computed(() => getTitleUrl(locale.value, isMobile.value))

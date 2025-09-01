@@ -1,6 +1,6 @@
 <template>
   <div class="app-container" :class="{ 'dark-mode': isDarkMode }">
-    <TheHeader @open-modal="openModal" @open-settings-modal="openSettingsModal" />
+    <TheHeader @open-modal="openModal" @open-settings-modal="openSettingsModal" @open-share-modal="openShareModal" />
 
     <main>
       <WelcomeMessage v-if="selectedStudents.length === 0" />
@@ -23,6 +23,14 @@
     />
 
     <SettingsModal :is-visible="isSettingsModalVisible" @close="closeSettingsModal" />
+
+    <ShareModal
+      :is-visible="isShareModalVisible"
+      :recommended-gifts="recommendedGifts"
+      :generic-ssr-gifts="genericSsrGifts"
+      :synthesis-gifts="synthesisGifts"
+      @close="closeShareModal"
+    />
   </div>
 </template>
 
@@ -38,6 +46,7 @@
   import GiftGridSection from '@components/section/GiftGridSection.vue'
   import StudentSelectionModal from '@components/modal/StudentSelectionModal.vue'
   import SettingsModal from '@components/modal/SettingsModal.vue'
+  import ShareModal from '@components/modal/ShareModal.vue'
   import FooterSection from '@components/layout/FooterSection.vue'
   import { useStudentData } from '@utils/fetchStudentData'
   import { useSrGiftData } from '@utils/fetchSrGiftData'
@@ -80,6 +89,7 @@
   const selectedStudentIds = ref([])
   const isModalOpen = ref(false)
   const isSettingsModalVisible = ref(false)
+  const isShareModalVisible = ref(false)
 
   useShareableSelection(selectedStudentIds, studentsData)
 
@@ -141,6 +151,14 @@
 
   function closeSettingsModal() {
     isSettingsModalVisible.value = false
+  }
+
+  function openShareModal() {
+    isShareModalVisible.value = true
+  }
+
+  function closeShareModal() {
+    isShareModalVisible.value = false
   }
 
   function toggleStudent(student) {
