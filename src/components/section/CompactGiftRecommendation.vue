@@ -41,7 +41,6 @@
   .compact-gift-row {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
     gap: 10px;
   }
   .compact-gift-island {

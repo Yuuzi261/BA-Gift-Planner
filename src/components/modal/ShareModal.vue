@@ -14,7 +14,9 @@
           <button class="close-btn" @click="$emit('close')">&times;</button>
         </div>
         <div ref="shareContent" class="modal-content">
-          <CompactGiftRecommendation v-for="gift in recommendedGifts" :key="`${gift.id}-${gift.isSsr}`" :gift="gift" />
+          <div class="compact-gift-recommendation-grid">
+            <CompactGiftRecommendation v-for="gift in recommendedGifts" :key="`${gift.id}-${gift.isSsr}`" :gift="gift" />
+          </div>
           <CompactGiftGridSection :title="t('app.giftGridSection.generic')" :gifts="genericSsrGifts" />
           <CompactGiftGridSection :title="t('app.giftGridSection.synthesis')" :gifts="synthesisGifts" />
         </div>
@@ -24,25 +26,33 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, toRefs } from 'vue'
 import { useSettingStore } from '@store/setting'
 import { storeToRefs } from 'pinia'
 import domtoimage from 'dom-to-image'
 import { getAssetsFile } from '@utils/getAssetsFile'
 import { useI18n } from '@composables/useI18n.js'
+import { useModal } from '@composables/useModal.js'
 import CompactGiftRecommendation from '@components/section/CompactGiftRecommendation.vue'
 import CompactGiftGridSection from '@components/section/CompactGiftGridSection.vue'
 
 const props = defineProps({
-  isVisible: Boolean,
+  isVisible: { type: Boolean, default: false },
   recommendedGifts: Array,
   genericSsrGifts: Array,
   synthesisGifts: Array,
 })
 
+const { t } = useI18n()
+
 const emit = defineEmits(['close'])
 
-const { t } = useI18n()
+const closeModal = () => {
+    emit('close')
+}
+const { isVisible } = toRefs(props)
+useModal(isVisible, closeModal)
+
 const settingStore = useSettingStore()
 const { isDarkMode } = storeToRefs(settingStore)
 
@@ -94,7 +104,7 @@ const downloadScreenshot = () => {
   padding: 20px;
   border-radius: 20px;
   width: 90%;
-  max-width: 600px;
+  max-width: 1000px;
   max-height: 80vh;
   display: flex;
   flex-direction: column;
@@ -147,5 +157,11 @@ const downloadScreenshot = () => {
 .modal-content {
   overflow-y: auto;
   padding-right: 10px;
+}
+
+.compact-gift-recommendation-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 </style>
