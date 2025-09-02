@@ -52,7 +52,7 @@
     top: -9999px;
     z-index: -1;
     width: 90%;
-    max-width: 1000px;
+    width: 1000px;
     padding: 20px;
     height: auto;
     overflow: hidden;
