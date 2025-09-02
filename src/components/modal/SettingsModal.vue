@@ -65,21 +65,24 @@
               </div>
             </div>
 
+            <!-- Screenshot Style Settings -->
             <div class="setting-group">
               <div class="setting-group-title-wrapper">
-                <h4 class="setting-group-title">{{ t('settingsModal.recommendationView') }}</h4>
+                <h4 class="setting-group-title">{{ t('settingsModal.screenshotStyle') }}</h4>
               </div>
               <div class="toggle-switch">
                 <span class="toggle-label">{{
-                  recommendationView === 'student' ? t('settingsModal.studentCentric') : t('settingsModal.giftCentric')
+                  screenshotStyle === 'student-preference'
+                    ? t('settingsModal.studentPreference')
+                    : t('settingsModal.giftRecommendation')
                 }}</span>
                 <input
-                  id="recommendationViewToggle"
+                  id="screenshotStyleToggle"
                   type="checkbox"
-                  :checked="recommendationView === 'student'"
-                  @change="toggleRecommendationView"
+                  :checked="screenshotStyle === 'student-preference'"
+                  @change="toggleScreenshotStyle"
                 />
-                <label for="recommendationViewToggle"></label>
+                <label for="screenshotStyleToggle"></label>
               </div>
             </div>
           </div>
@@ -113,10 +116,10 @@
   const {
     enableCharacterSelectorLazyLoad: isLazyLoadEnabled,
     showOnlyOptimalSolution: isShowOnlyOptimalSolutionEnabled,
-    recommendationView,
+    screenshotStyle,
   } = storeToRefs(settingStore)
 
-  const { toggleCharacterSelectorLazyLoad, toggleShowOnlyOptimalSolution, toggleRecommendationView } = settingStore
+  const { toggleCharacterSelectorLazyLoad, toggleShowOnlyOptimalSolution, toggleScreenshotStyle } = settingStore
 
   const availableLanguages = [
     { code: 'zh-tw', name: '繁體中文' },

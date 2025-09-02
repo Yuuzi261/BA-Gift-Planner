@@ -21,7 +21,7 @@
     <SilentScreenshotRenderer
       ref="silentScreenshotRendererRef"
       :recommended-gifts="recommendedGifts"
-      :student-recommendations="studentRecommendations"
+      :student-preferences="studentPreferences"
       :generic-ssr-gifts="genericSsrGifts"
       :synthesis-gifts="synthesisGifts"
       :is-dark-mode="isDarkMode"
@@ -213,7 +213,7 @@
       .sort((a, b) => b.analysis.maxValue - a.analysis.maxValue)
   })
 
-  const studentRecommendations = computed(() => {
+  const studentPreferences = computed(() => {
     if (selectedStudents.value.length === 0) {
       return []
     }

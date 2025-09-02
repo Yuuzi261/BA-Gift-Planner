@@ -10,7 +10,7 @@ export const useSettingStore = defineStore(
     const locale = ref(null)
     const showOnlyOptimalSolution = ref(false)
     const enableCharacterSelectorLazyLoad = ref(true)
-    const recommendationView = ref('gift') // 'gift' or 'student'
+    const screenshotStyle = ref('gift-recommendation') // 'gift-recommendation' or 'student-preference'
 
     // Getters (Computed)
     const isDarkMode = computed(() => {
@@ -35,8 +35,9 @@ export const useSettingStore = defineStore(
       showOnlyOptimalSolution.value = !showOnlyOptimalSolution.value
     }
 
-    function toggleRecommendationView() {
-      recommendationView.value = recommendationView.value === 'gift' ? 'student' : 'gift'
+    function toggleScreenshotStyle() {
+      screenshotStyle.value =
+        screenshotStyle.value === 'gift-recommendation' ? 'student-preference' : 'gift-recommendation'
     }
 
     function setLocale(newLocale) {
@@ -55,11 +56,11 @@ export const useSettingStore = defineStore(
       isDarkMode,
       enableCharacterSelectorLazyLoad,
       showOnlyOptimalSolution,
-      recommendationView,
+      screenshotStyle,
       toggleTheme,
       toggleCharacterSelectorLazyLoad,
       toggleShowOnlyOptimalSolution,
-      toggleRecommendationView,
+      toggleScreenshotStyle,
       setLocale,
       initThemeListener,
     }

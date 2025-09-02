@@ -1,11 +1,11 @@
 <template>
   <div ref="shareContentForScreenshot" class="share-content-for-screenshot" :class="{ 'dark-mode': isDarkMode }">
-    <div v-if="recommendationView === 'gift'" class="compact-gift-recommendation-grid">
+    <div v-if="screenshotStyle === 'gift-recommendation'" class="compact-gift-recommendation-grid">
       <CompactGiftRecommendation v-for="gift in recommendedGifts" :key="`${gift.id}-${gift.isSsr}`" :gift="gift" />
     </div>
-    <div v-else class="compact-student-recommendation-grid">
-      <CompactStudentRecommendation
-        v-for="student in studentRecommendations"
+    <div v-else class="compact-student-preference-grid">
+      <CompactStudentPreference
+        v-for="student in studentPreferences"
         :key="student.id"
         :student="student"
       />
@@ -22,12 +22,12 @@
   import { useSettingStore } from '@/store/setting'
   import { storeToRefs } from 'pinia'
   import CompactGiftRecommendation from '@components/section/CompactGiftRecommendation.vue'
-  import CompactStudentRecommendation from '@components/section/CompactStudentRecommendation.vue'
+  import CompactStudentPreference from '@components/section/CompactStudentPreference.vue'
   import CompactGiftGridSection from '@components/section/CompactGiftGridSection.vue'
 
   const props = defineProps({
     recommendedGifts: Array,
-    studentRecommendations: Array,
+    studentPreferences: Array,
     genericSsrGifts: Array,
     synthesisGifts: Array,
     isDarkMode: Boolean,
@@ -35,7 +35,7 @@
 
   const { t } = useI18n()
   const settingStore = useSettingStore()
-  const { recommendationView } = storeToRefs(settingStore)
+  const { screenshotStyle } = storeToRefs(settingStore)
   const shareContentForScreenshot = ref(null)
 
   const takeScreenshot = async () => {
@@ -78,7 +78,7 @@
     margin-bottom: 20px;
   }
 
-  .share-content-for-screenshot .compact-student-recommendation-grid {
+  .share-content-for-screenshot .compact-student-preference-grid {
     display: block;
     margin-bottom: 20px;
   }
