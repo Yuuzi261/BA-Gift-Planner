@@ -13,6 +13,7 @@
   "dependencies": {
     "@types/pako": "^2.0.4",
     "@vueuse/core": "^13.7.0",
+    "@zumer/snapdom": "file:local-packages/zumer-snapdom-1.9.10-dev.0.tgz",
     "eslint": "^9.33.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-vue": "^10.4.0",

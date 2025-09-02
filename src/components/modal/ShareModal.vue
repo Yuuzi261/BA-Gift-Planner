@@ -13,16 +13,18 @@
           </div>
           <button class="close-btn" @click="$emit('close')">&times;</button>
         </div>
-        <div ref="shareContent" class="modal-content">
-          <div class="compact-gift-recommendation-grid">
-            <CompactGiftRecommendation
-              v-for="gift in recommendedGifts"
-              :key="`${gift.id}-${gift.isSsr}`"
-              :gift="gift"
-            />
+        <div style="overflow-y: auto">
+          <div ref="shareContent" class="modal-content">
+            <div class="compact-gift-recommendation-grid">
+              <CompactGiftRecommendation
+                v-for="gift in recommendedGifts"
+                :key="`${gift.id}-${gift.isSsr}`"
+                :gift="gift"
+              />
+            </div>
+            <CompactGiftGridSection :title="t('app.giftGridSection.generic')" :gifts="genericSsrGifts" />
+            <CompactGiftGridSection :title="t('app.giftGridSection.synthesis')" :gifts="synthesisGifts" />
           </div>
-          <CompactGiftGridSection :title="t('app.giftGridSection.generic')" :gifts="genericSsrGifts" />
-          <CompactGiftGridSection :title="t('app.giftGridSection.synthesis')" :gifts="synthesisGifts" />
         </div>
       </div>
     </div>
@@ -33,7 +35,7 @@
   import { ref, computed, toRefs } from 'vue'
   import { useSettingStore } from '@store/setting'
   import { storeToRefs } from 'pinia'
-  import { convertElementToJpg } from '@utils/domToImage.js'
+  import { convertElementToJpg } from '@utils/snapDom.js'
   import { getAssetsFile } from '@utils/getAssetsFile'
   import { useI18n } from '@composables/useI18n.js'
   import { useModal } from '@composables/useModal.js'
@@ -77,7 +79,7 @@
     }
     try {
       await convertElementToJpg(shareContent.value, {
-        fileName: 'gift-recommendations.jpg',
+        fileName: 'gift-recommendations',
         backgroundColor: isDarkMode.value ? '#1e2a38' : '#f0f4f8',
       })
     } catch (error) {
@@ -163,8 +165,8 @@
     color: #eee;
   }
   .modal-content {
-    overflow-y: auto;
-    padding-right: 10px;
+    overflow-y: hide;
+    padding: 10px;
   }
 
   .compact-gift-recommendation-grid {
