@@ -26,8 +26,7 @@ export async function convertElementToJpg(element, options = {}) {
     }
 
     const result = await snapdom(element, screenshotOptions)
-    const img = await result.toPng()
-    document.body.appendChild(img)
+    await result.toPng()
     await result.download({ format: 'png', filename: fileName })
   } catch (error) {
     console.error('Error during image conversion:', error)
