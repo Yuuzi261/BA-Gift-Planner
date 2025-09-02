@@ -38,7 +38,9 @@
                       @change="updateScreenshotStyle"
                     />
                     <label for="gift-style" class="option-label">
-                      <div class="option-icon">🎁</div>
+                      <div class="option-icon">
+                        <img :src="getAssetsFile('icon/gift.webp')" draggable="false" />
+                      </div>
                       <div class="option-text">
                         <span class="option-title">{{ t('shareModal.giftRecommendation') }}</span>
                         <span class="option-desc">{{ t('shareModal.giftRecommendationDesc') }}</span>
@@ -55,7 +57,9 @@
                       @change="updateScreenshotStyle"
                     />
                     <label for="student-style" class="option-label">
-                      <div class="option-icon">🥑</div>
+                      <div class="option-icon">
+                        <img :src="getAssetsFile('icon/student_favor.webp')" draggable="false" />
+                      </div>
                       <div class="option-text">
                         <span class="option-title">{{ t('shareModal.studentPreference') }}</span>
                         <span class="option-desc">{{ t('shareModal.studentPreferenceDesc') }}</span>
@@ -162,6 +166,7 @@
   import { toRefs } from 'vue'
   import { useI18n } from '@/composables/useI18n.js'
   import { useModal } from '@/composables/useModal.js'
+  import { getAssetsFile } from '@/utils/getAssetsFile'
 
   const { t } = useI18n()
 
@@ -411,6 +416,10 @@
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .option-icon img {
+    height: 90%;
   }
 
   .dark-mode .option-icon {
