@@ -19,7 +19,6 @@ export async function convertElementToJpg(element, options = {}) {
   try {
     const rect = element.getBoundingClientRect()
     const screenshotOptions = {
-      quality: 1.0,
       backgroundColor: backgroundColor,
       width: rect.width,
       height: rect.height,
