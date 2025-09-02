@@ -10,7 +10,6 @@ export const useSettingStore = defineStore(
     const locale = ref(null)
     const showOnlyOptimalSolution = ref(false)
     const enableCharacterSelectorLazyLoad = ref(true)
-    const screenshotStyle = ref('gift-recommendation') // 'gift-recommendation' or 'student-preference'
 
     // Getters (Computed)
     const isDarkMode = computed(() => {
@@ -56,11 +55,9 @@ export const useSettingStore = defineStore(
       isDarkMode,
       enableCharacterSelectorLazyLoad,
       showOnlyOptimalSolution,
-      screenshotStyle,
       toggleTheme,
       toggleCharacterSelectorLazyLoad,
       toggleShowOnlyOptimalSolution,
-      toggleScreenshotStyle,
       setLocale,
       initThemeListener,
     }

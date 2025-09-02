@@ -4,7 +4,7 @@
       @open-modal="openModal"
       @open-settings-modal="openSettingsModal"
       @copy-share-link="handleCopyShareLink"
-      @download-share-screenshot="handleDownloadShareScreenshot"
+      @open-share-modal="openShareModal"
     />
 
     <main>
@@ -25,6 +25,8 @@
       :generic-ssr-gifts="genericSsrGifts"
       :synthesis-gifts="synthesisGifts"
       :is-dark-mode="isDarkMode"
+      :style="screenshotRenderStyle"
+      :size="screenshotRenderSize"
     />
 
     <StudentSelectionModal
@@ -37,6 +39,11 @@
     />
 
     <SettingsModal :is-visible="isSettingsModalVisible" @close="closeSettingsModal" />
+    <ShareModal
+      :is-visible="isShareModalVisible"
+      @close="closeShareModal"
+      @download-screenshot="handleDownloadShareScreenshot"
+    />
 
     <LoadingOverlay :is-visible="isDownloadingScreenshot" />
   </div>
@@ -54,6 +61,7 @@
   import GiftGridSection from '@components/section/GiftGridSection.vue'
   import StudentSelectionModal from '@components/modal/StudentSelectionModal.vue'
   import SettingsModal from '@components/modal/SettingsModal.vue'
+  import ShareModal from '@components/modal/ShareModal.vue'
   import FooterSection from '@components/layout/FooterSection.vue'
   import SilentScreenshotRenderer from '@components/utility/SilentScreenshotRenderer.vue'
   import LoadingOverlay from '@components/utility/LoadingOverlay.vue'
@@ -98,6 +106,9 @@
   const selectedStudentIds = ref([])
   const isModalOpen = ref(false)
   const isSettingsModalVisible = ref(false)
+  const isShareModalVisible = ref(false)
+  const screenshotRenderStyle = ref('gift-recommendation') // Default style for screenshot rendering
+  const screenshotRenderSize = ref('1x') // Default size for screenshot rendering
   const silentScreenshotRendererRef = ref(null)
   const isDownloadingScreenshot = ref(false)
 
@@ -163,13 +174,23 @@
     isSettingsModalVisible.value = false
   }
 
+  function openShareModal() {
+    isShareModalVisible.value = true
+  }
+
+  function closeShareModal() {
+    isShareModalVisible.value = false
+  }
+
   function handleCopyShareLink() {
     navigator.clipboard.writeText(window.location.href)
     alert('Link copied to clipboard!')
   }
 
-  async function handleDownloadShareScreenshot() {
+  async function handleDownloadShareScreenshot({ style, size }) {
     isDownloadingScreenshot.value = true
+    screenshotRenderStyle.value = style
+    screenshotRenderSize.value = size
     try {
       if (silentScreenshotRendererRef.value) {
         await silentScreenshotRendererRef.value.takeScreenshot()

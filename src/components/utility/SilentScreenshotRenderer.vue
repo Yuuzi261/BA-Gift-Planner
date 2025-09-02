@@ -1,6 +1,6 @@
 <template>
   <div ref="shareContentForScreenshot" class="share-content-for-screenshot" :class="{ 'dark-mode': isDarkMode }">
-    <div v-if="screenshotStyle === 'gift-recommendation'" class="compact-gift-recommendation-grid">
+    <div v-if="props.style === 'gift-recommendation'" class="compact-gift-recommendation-grid">
       <CompactGiftRecommendation v-for="gift in recommendedGifts" :key="`${gift.id}-${gift.isSsr}`" :gift="gift" />
     </div>
     <div v-else class="compact-student-preference-grid">
@@ -15,8 +15,6 @@
   import { ref, computed } from 'vue'
   import { convertElementToJpg } from '@utils/snapDom.js'
   import { useI18n } from '@composables/useI18n'
-  import { useSettingStore } from '@/store/setting'
-  import { storeToRefs } from 'pinia'
   import CompactGiftRecommendation from '@components/section/CompactGiftRecommendation.vue'
   import CompactStudentPreference from '@components/section/CompactStudentPreference.vue'
   import CompactGiftGridSection from '@components/section/CompactGiftGridSection.vue'
@@ -27,11 +25,11 @@
     genericSsrGifts: Array,
     synthesisGifts: Array,
     isDarkMode: Boolean,
+    style: String,
+    size: String,
   })
 
   const { t } = useI18n()
-  const settingStore = useSettingStore()
-  const { screenshotStyle } = storeToRefs(settingStore)
   const shareContentForScreenshot = ref(null)
 
   const takeScreenshot = async () => {
@@ -43,6 +41,7 @@
       await convertElementToJpg(shareContentForScreenshot.value, {
         fileName: 'gift-recommendations',
         backgroundColor: props.isDarkMode ? '#1e2a38' : '#f0f4f8',
+        scale: +props.size.replace('x', ''),
       })
     } catch (error) {
       console.error('Failed to download screenshot:', error)

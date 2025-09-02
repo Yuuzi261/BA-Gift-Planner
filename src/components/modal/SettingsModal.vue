@@ -65,26 +65,7 @@
               </div>
             </div>
 
-            <!-- Screenshot Style Settings -->
-            <div class="setting-group">
-              <div class="setting-group-title-wrapper">
-                <h4 class="setting-group-title">{{ t('settingsModal.screenshotStyle') }}</h4>
-              </div>
-              <div class="toggle-switch">
-                <span class="toggle-label">{{
-                  screenshotStyle === 'student-preference'
-                    ? t('settingsModal.studentPreference')
-                    : t('settingsModal.giftRecommendation')
-                }}</span>
-                <input
-                  id="screenshotStyleToggle"
-                  type="checkbox"
-                  :checked="screenshotStyle === 'student-preference'"
-                  @change="toggleScreenshotStyle"
-                />
-                <label for="screenshotStyleToggle"></label>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -116,10 +97,9 @@
   const {
     enableCharacterSelectorLazyLoad: isLazyLoadEnabled,
     showOnlyOptimalSolution: isShowOnlyOptimalSolutionEnabled,
-    screenshotStyle,
   } = storeToRefs(settingStore)
 
-  const { toggleCharacterSelectorLazyLoad, toggleShowOnlyOptimalSolution, toggleScreenshotStyle } = settingStore
+  const { toggleCharacterSelectorLazyLoad, toggleShowOnlyOptimalSolution } = settingStore
 
   const availableLanguages = [
     { code: 'zh-tw', name: '繁體中文' },

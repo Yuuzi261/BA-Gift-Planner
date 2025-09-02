@@ -108,7 +108,7 @@
 
   const { t, currentLocale: locale } = useI18n()
 
-  const emit = defineEmits(['openModal', 'openSettingsModal', 'copyShareLink', 'downloadShareScreenshot'])
+  const emit = defineEmits(['openModal', 'openSettingsModal', 'copyShareLink', 'openShareModal'])
 
   const showShareDropdown = ref(false)
 
@@ -122,7 +122,7 @@
   }
 
   const handleDownloadScreenshot = () => {
-    emit('downloadShareScreenshot')
+    emit('openShareModal')
     showShareDropdown.value = false
   }
 

@@ -69,13 +69,17 @@
     "language": "語言",
     "showOnlyOptimalSolution": "僅顯示最優解",
     "characterSelectorLazyLoad": "角色選擇器圖片懶加載",
-    "screenshotStyle": "截圖樣式",
-    "giftRecommendation": "禮物推薦",
-    "studentPreference": "學生喜好",
     "theme": "主題",
     "light": "明亮",
     "dark": "暗黑",
     "system": "跟隨系統"
+  },
+  "shareModal": {
+    "title": "下載設定",
+    "screenshotStyle": "截圖樣式",
+    "giftRecommendation": "禮物推薦",
+    "studentPreference": "學生喜好",
+    "screenshotSize": "圖片大小"
   },
   "app": {
     "giftGridSection": {

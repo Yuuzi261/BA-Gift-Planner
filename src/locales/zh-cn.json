@@ -69,13 +69,17 @@
     "language": "语言",
     "showOnlyOptimalSolution": "仅显示最优解",
     "characterSelectorLazyLoad": "角色选择器图片懒加载",
-    "screenshotStyle": "截图样式",
-    "giftRecommendation": "礼物推荐",
-    "studentPreference": "学生喜好",
     "theme": "主题",
     "light": "明亮",
     "dark": "暗黑",
     "system": "跟随系统"
+  },
+  "shareModal": {
+    "title": "下载设定",
+    "screenshotStyle": "截图样式",
+    "giftRecommendation": "礼物推荐",
+    "studentPreference": "学生喜好",
+    "screenshotSize": "图片大小"
   },
   "app": {
     "giftGridSection": {
