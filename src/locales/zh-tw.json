@@ -96,7 +96,9 @@
   "header": {
     "title": "蔚藍檔案禮物規劃器",
     "selectStudentsAlt": "選擇學生",
-    "settingsAlt": "設定"
+    "settingsAlt": "設定",
+    "copyLink": "複製連結",
+    "downloadScreenshot": "下載截圖"
   },
   "welcome": {
     "message": "請點擊右上角「選擇角色」來選擇要培養好感度的學生"

@@ -7,9 +7,15 @@
       <button class="icon-btn" @click="$emit('openModal')">
         <img :src="addStudentsIconUrl" :alt="t('header.selectStudentsAlt')" draggable="false" />
       </button>
-      <button class="icon-btn" @click="$emit('openShareModal')">
-        <img :src="shareIconUrl" :alt="t('header.shareAlt')" draggable="false" />
-      </button>
+      <div class="share-dropdown-container">
+        <button class="icon-btn" @click="toggleShareDropdown">
+          <img :src="shareIconUrl" :alt="t('header.shareAlt')" draggable="false" />
+        </button>
+        <div v-if="showShareDropdown" class="share-dropdown-menu">
+          <button @click="handleCopyLink">{{ t('header.copyLink') }}</button>
+          <button @click="handleDownloadScreenshot">{{ t('header.downloadScreenshot') }}</button>
+        </div>
+      </div>
       <button class="icon-btn settings-btn" @click="handleSettingsClick">
         <img
           :src="gearIconUrl"
@@ -82,7 +88,7 @@
 </template>
 
 <script setup>
-  import { computed, ref } from 'vue'
+  import { computed, ref, onMounted, onUnmounted } from 'vue'
   import { useSettingStore } from '@store/setting'
   import { storeToRefs } from 'pinia'
   import { getAssetsFile } from '@utils/getAssetsFile'
@@ -92,7 +98,37 @@
 
   const { t, currentLocale: locale } = useI18n()
 
-  const emit = defineEmits(['openModal', 'openSettingsModal', 'openShareModal'])
+  const emit = defineEmits(['openModal', 'openSettingsModal', 'copyShareLink', 'downloadShareScreenshot'])
+
+  const showShareDropdown = ref(false)
+
+  const toggleShareDropdown = () => {
+    showShareDropdown.value = !showShareDropdown.value
+  }
+
+  const handleCopyLink = () => {
+    emit('copyShareLink')
+    showShareDropdown.value = false
+  }
+
+  const handleDownloadScreenshot = () => {
+    emit('downloadShareScreenshot')
+    showShareDropdown.value = false
+  }
+
+  const handleClickOutside = (event) => {
+    if (showShareDropdown.value && !event.target.closest('.share-dropdown-container')) {
+      showShareDropdown.value = false
+    }
+  }
+
+  onMounted(() => {
+    document.addEventListener('click', handleClickOutside)
+  })
+
+  onUnmounted(() => {
+    document.removeEventListener('click', handleClickOutside)
+  })
 
   const settingStore = useSettingStore()
   const { theme } = storeToRefs(settingStore)
@@ -232,5 +268,51 @@
   .icon-fade-slide-leave-to {
     opacity: 0;
     transform: rotateY(-90deg);
+  }
+
+  .share-dropdown-container {
+    position: relative;
+  }
+
+  .share-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    z-index: 1001;
+    min-width: 150px;
+    margin-top: 10px;
+  }
+
+  .dark-mode .share-dropdown-menu {
+    background-color: #333;
+  }
+
+  .share-dropdown-menu button {
+    display: block;
+    width: 100%;
+    padding: 12px 15px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    transition: background-color 0.2s ease;
+  }
+
+  .dark-mode .share-dropdown-menu button {
+    color: #eee;
+  }
+
+  .share-dropdown-menu button:hover {
+    background-color: #f0f0f0;
+  }
+
+  .dark-mode .share-dropdown-menu button:hover {
+    background-color: #555;
   }
 </style>
