@@ -36,13 +36,34 @@
               </div>
               <div class="size-selector">
                 <label>
-                  <input type="radio" name="screenshotSize" value="1" :checked="screenshotSize == 1" @change="updateScreenshotSize" /> 1x
+                  <input
+                    type="radio"
+                    name="screenshotSize"
+                    value="1"
+                    :checked="screenshotSize == 1"
+                    @change="updateScreenshotSize"
+                  />
+                  1x
                 </label>
                 <label>
-                  <input type="radio" name="screenshotSize" value="2" :checked="screenshotSize == 2" @change="updateScreenshotSize" /> 2x
+                  <input
+                    type="radio"
+                    name="screenshotSize"
+                    value="2"
+                    :checked="screenshotSize == 2"
+                    @change="updateScreenshotSize"
+                  />
+                  2x
                 </label>
                 <label>
-                  <input type="radio" name="screenshotSize" value="4" :checked="screenshotSize == 4" @change="updateScreenshotSize" /> 4x
+                  <input
+                    type="radio"
+                    name="screenshotSize"
+                    value="4"
+                    :checked="screenshotSize == 4"
+                    @change="updateScreenshotSize"
+                  />
+                  4x
                 </label>
               </div>
             </div>
@@ -261,7 +282,7 @@
     font-weight: 500;
   }
 
-  .size-selector input[type="radio"] {
+  .size-selector input[type='radio'] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -274,21 +295,21 @@
     transition: all 0.2s ease;
   }
 
-  .dark-mode .size-selector input[type="radio"] {
+  .dark-mode .size-selector input[type='radio'] {
     border-color: #2a4a6e;
   }
 
-  .size-selector input[type="radio"]:checked {
+  .size-selector input[type='radio']:checked {
     background-color: #6495ed;
     border-color: #6495ed;
   }
 
-  .dark-mode .size-selector input[type="radio"]:checked {
+  .dark-mode .size-selector input[type='radio']:checked {
     background-color: #00aeef;
     border-color: #00aeef;
   }
 
-  .size-selector input[type="radio"]:checked::before {
+  .size-selector input[type='radio']:checked::before {
     content: '';
     display: block;
     width: 10px;
