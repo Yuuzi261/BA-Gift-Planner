@@ -9,7 +9,17 @@
       />
     </div>
     <div class="compact-recommendation-island">
-      <div class="compact-rec-type" :class="gift.analysis.class">{{ t(gift.analysis.typeTextKey) }}</div>
+      <div class="compact-rec-type" :class="gift.analysis.class">
+        <div class="tooltip-xp">
+          <ImageWithLoader
+            :src="getInteractionUrl(getInteractionLevel(gift, gift.analysis.characters[0]))"
+            class="tooltip-icon"
+            object-fit="contain"
+            loader-type="pulse"
+          />
+          <span>{{ getPreferenceValue(gift.analysis.characters[0], gift) }}</span>
+        </div>
+      </div>
       <div class="compact-character-avatars">
         <div
           v-for="char in gift.analysis.characters"
@@ -27,14 +37,26 @@
 <script setup>
   import { getAvatarUrl } from '@utils/getAvatarUrl'
   import { getGiftUrl } from '@utils/getGiftUrl'
-  import { useI18n } from '@composables/useI18n.js'
+  import { getInteractionUrl } from '@utils/getInteractionUrl'
+  import { getPreferenceValue } from '@utils/getPreferenceValue'
   import ImageWithLoader from '@components/ui/ImageWithLoader.vue'
-
-  const { t } = useI18n()
 
   defineProps({
     gift: Object,
   })
+
+  function getInteractionLevel(gift, char) {
+    const value = getPreferenceValue(char, gift)
+    if (gift.isSsr) {
+      if (value > 180) return 'xl'
+      if (value > 120) return 'l'
+      return 'm'
+    } else {
+      if (value > 60) return 'xl'
+      if (value > 40) return 'l'
+      return 'm'
+    }
+  }
 </script>
 
 <style scoped>
@@ -126,5 +148,9 @@
   .rec-any {
     background: #d1ecf1;
     color: #0c5460;
+  }
+  .tooltip-icon {
+    width: 24px;
+    height: 24px;
   }
 </style>
