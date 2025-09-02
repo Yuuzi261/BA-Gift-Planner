@@ -17,7 +17,7 @@
             object-fit="contain"
             loader-type="pulse"
           />
-          <span>{{ getPreferenceValue(gift.analysis.characters[0], gift) }}</span>
+          <div>{{ getPreferenceValue(gift.analysis.characters[0], gift) }}</div>
         </div>
       </div>
       <div class="compact-character-avatars">
@@ -48,6 +48,10 @@
 </script>
 
 <style scoped>
+  .tooltip-xp {
+    display: flex;
+    align-items: center;
+  }
   .compact-gift-row {
     display: flex;
     align-items: center;
