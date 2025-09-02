@@ -12,8 +12,18 @@
           <img :src="shareIconUrl" :alt="t('header.shareAlt')" draggable="false" />
         </button>
         <div v-if="showShareDropdown" class="share-dropdown-menu">
-          <button @click="handleCopyLink">{{ t('header.copyLink') }}</button>
-          <button @click="handleDownloadScreenshot">{{ t('header.downloadScreenshot') }}</button>
+          <button @click="handleCopyLink" class="dropdown-item">
+            <span class="dropdown-icon">
+              <img :src="getAssetsFile('icon/link.svg')" :alt="t('header.copyLink')" draggable="false" />
+            </span>
+            <span>{{ t('header.copyLink') }}</span>
+          </button>
+          <button @click="handleDownloadScreenshot" class="dropdown-item">
+            <span class="dropdown-icon">
+              <img :src="getAssetsFile('icon/download.svg')" :alt="t('header.downloadScreenshot')" draggable="false" />
+            </span>
+            <span>{{ t('header.downloadScreenshot') }}</span>
+          </button>
         </div>
       </div>
       <button class="icon-btn settings-btn" @click="handleSettingsClick">
@@ -288,12 +298,10 @@
   }
 
   .dark-mode .share-dropdown-menu {
-    background-color: #333;
+    background-color: #1f3048;
   }
 
   .share-dropdown-menu button {
-    display: block;
-    width: 100%;
     padding: 12px 15px;
     text-align: left;
     background: none;
@@ -313,6 +321,31 @@
   }
 
   .dark-mode .share-dropdown-menu button:hover {
-    background-color: #555;
+    background-color: #2a4a6e;
+  }
+
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .dropdown-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+
+  .dropdown-icon img {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) invert(0.2);
+  }
+
+  .dark-mode .dropdown-icon img {
+    filter: brightness(0) invert(0.8);
   }
 </style>
