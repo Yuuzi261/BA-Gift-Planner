@@ -36,13 +36,13 @@
               </div>
               <div class="size-selector">
                 <label>
-                  <input type="radio" name="screenshotSize" value="1" v-model="screenshotSize" /> 1x
+                  <input type="radio" name="screenshotSize" value="1" :checked="screenshotSize == 1" @change="updateScreenshotSize" /> 1x
                 </label>
                 <label>
-                  <input type="radio" name="screenshotSize" value="2" v-model="screenshotSize" /> 2x
+                  <input type="radio" name="screenshotSize" value="2" :checked="screenshotSize == 2" @change="updateScreenshotSize" /> 2x
                 </label>
                 <label>
-                  <input type="radio" name="screenshotSize" value="4" v-model="screenshotSize" /> 4x
+                  <input type="radio" name="screenshotSize" value="4" :checked="screenshotSize == 4" @change="updateScreenshotSize" /> 4x
                 </label>
               </div>
             </div>
@@ -57,7 +57,7 @@
 </template>
 
 <script setup>
-  import { ref, toRefs } from 'vue'
+  import { toRefs } from 'vue'
   import { useI18n } from '@/composables/useI18n.js'
   import { useModal } from '@/composables/useModal.js'
 
@@ -65,8 +65,10 @@
 
   const props = defineProps({
     isVisible: { type: Boolean, default: false },
+    screenshotStyle: { type: String, default: 'gift-recommendation' },
+    screenshotSize: { type: [Number, String], default: 1 },
   })
-  const emit = defineEmits(['close', 'downloadScreenshot'])
+  const emit = defineEmits(['close', 'downloadScreenshot', 'update:screenshotStyle', 'update:screenshotSize'])
 
   const closeModal = () => {
     emit('close')
@@ -74,16 +76,17 @@
   const { isVisible } = toRefs(props)
   useModal(isVisible, closeModal)
 
-  const screenshotStyle = ref('gift-recommendation') // Default value
-  const screenshotSize = ref(1) // Default value for screenshot size
+  const toggleScreenshotStyle = (event) => {
+    const newStyle = event.target.checked ? 'student-preference' : 'gift-recommendation'
+    emit('update:screenshotStyle', newStyle)
+  }
 
-  const toggleScreenshotStyle = () => {
-    screenshotStyle.value =
-      screenshotStyle.value === 'student-preference' ? 'gift-recommendation' : 'student-preference'
+  const updateScreenshotSize = (event) => {
+    emit('update:screenshotSize', event.target.value)
   }
 
   const handleDownload = () => {
-    emit('downloadScreenshot', { style: screenshotStyle.value, size: screenshotSize.value })
+    emit('downloadScreenshot')
     closeModal()
   }
 </script>

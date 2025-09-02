@@ -41,6 +41,8 @@
     <SettingsModal :is-visible="isSettingsModalVisible" @close="closeSettingsModal" />
     <ShareModal
       :is-visible="isShareModalVisible"
+      v-model:screenshot-style="screenshotRenderStyle"
+      v-model:screenshot-size="screenshotRenderSize"
       @close="closeShareModal"
       @download-screenshot="handleDownloadShareScreenshot"
     />
@@ -187,10 +189,8 @@
     alert('Link copied to clipboard!')
   }
 
-  async function handleDownloadShareScreenshot({ style, size }) {
+  async function handleDownloadShareScreenshot() {
     isDownloadingScreenshot.value = true
-    screenshotRenderStyle.value = style
-    screenshotRenderSize.value = size
     try {
       if (silentScreenshotRendererRef.value) {
         await silentScreenshotRendererRef.value.takeScreenshot()
