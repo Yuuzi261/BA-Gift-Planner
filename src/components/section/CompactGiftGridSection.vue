@@ -72,8 +72,8 @@
     background: linear-gradient(45deg, #7a5bbe, #9e82d6);
   }
   .compact-gift-icon {
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
   }
 </style>
