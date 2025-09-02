@@ -1,6 +1,11 @@
 <template>
   <div class="app-container" :class="{ 'dark-mode': isDarkMode }">
-    <TheHeader @open-modal="openModal" @open-settings-modal="openSettingsModal" @copy-share-link="handleCopyShareLink" @download-share-screenshot="handleDownloadShareScreenshot" />
+    <TheHeader
+      @open-modal="openModal"
+      @open-settings-modal="openSettingsModal"
+      @copy-share-link="handleCopyShareLink"
+      @download-share-screenshot="handleDownloadShareScreenshot"
+    />
 
     <main>
       <WelcomeMessage v-if="selectedStudents.length === 0" />
@@ -13,17 +18,13 @@
 
     <FooterSection />
 
-    <div ref="shareContentForScreenshot" class="share-content-for-screenshot">
-      <div class="compact-gift-recommendation-grid">
-        <CompactGiftRecommendation
-          v-for="gift in recommendedGifts"
-          :key="`${gift.id}-${gift.isSsr}`"
-          :gift="gift"
-        />
-      </div>
-      <CompactGiftGridSection :title="t('app.giftGridSection.generic')" :gifts="genericSsrGifts" />
-      <CompactGiftGridSection :title="t('app.giftGridSection.synthesis')" :gifts="synthesisGifts" />
-    </div>
+    <SilentScreenshotRenderer
+      ref="silentScreenshotRendererRef"
+      :recommended-gifts="recommendedGifts"
+      :generic-ssr-gifts="genericSsrGifts"
+      :synthesis-gifts="synthesisGifts"
+      :is-dark-mode="isDarkMode"
+    />
 
     <StudentSelectionModal
       :is-modal-open="isModalOpen"
@@ -35,8 +36,6 @@
     />
 
     <SettingsModal :is-visible="isSettingsModalVisible" @close="closeSettingsModal" />
-
-    
   </div>
 </template>
 
@@ -53,15 +52,13 @@
   import StudentSelectionModal from '@components/modal/StudentSelectionModal.vue'
   import SettingsModal from '@components/modal/SettingsModal.vue'
   import FooterSection from '@components/layout/FooterSection.vue'
-  import CompactGiftRecommendation from '@components/section/CompactGiftRecommendation.vue'
-  import CompactGiftGridSection from '@components/section/CompactGiftGridSection.vue'
+  import SilentScreenshotRenderer from '@components/utility/SilentScreenshotRenderer.vue'
   import { useStudentData } from '@utils/fetchStudentData'
   import { useSrGiftData } from '@utils/fetchSrGiftData'
   import { useSsrGiftData } from '@utils/fetchSsrGiftData'
   import { getPreferenceValue } from '@utils/getPreferenceValue'
   import { useI18n } from '@composables/useI18n'
   import { useShareableSelection } from '@composables/useShareableSelection'
-  import { convertElementToJpg } from '@utils/snapDom.js'
 
   const { t, isLoaded, currentLocale: locale } = useI18n()
   const settingStore = useSettingStore()
@@ -97,7 +94,7 @@
   const selectedStudentIds = ref([])
   const isModalOpen = ref(false)
   const isSettingsModalVisible = ref(false)
-  const shareContentForScreenshot = ref(null)
+  const silentScreenshotRendererRef = ref(null)
 
   useShareableSelection(selectedStudentIds, studentsData)
 
@@ -167,17 +164,8 @@
   }
 
   async function handleDownloadShareScreenshot() {
-    if (!shareContentForScreenshot.value) {
-      console.error('Share content element for screenshot not found.')
-      return
-    }
-    try {
-      await convertElementToJpg(shareContentForScreenshot.value, {
-        fileName: 'gift-recommendations',
-        backgroundColor: isDarkMode.value ? '#1e2a38' : '#f0f4f8',
-      })
-    } catch (error) {
-      console.error('Failed to download screenshot:', error)
+    if (silentScreenshotRendererRef.value) {
+      await silentScreenshotRendererRef.value.takeScreenshot()
     }
   }
 
@@ -304,23 +292,5 @@
     display: flex;
     flex-direction: column;
     min-height: calc(100vh - 80px - 40px); /* Subtract header(80px) & padding(40px) height */
-  }
-
-  .share-content-for-screenshot {
-    position: absolute;
-    left: -9999px;
-    top: -9999px;
-    z-index: -1;
-    width: 90%;
-    max-width: 1000px;
-    padding: 20px;
-    height: auto; /* Adjust height based on content */
-    overflow: hidden; /* Hide overflow */
-  }
-
-  .share-content-for-screenshot .compact-gift-recommendation-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
   }
 </style>
