@@ -39,24 +39,12 @@
   import { getGiftUrl } from '@utils/getGiftUrl'
   import { getInteractionUrl } from '@utils/getInteractionUrl'
   import { getPreferenceValue } from '@utils/getPreferenceValue'
+  import { getInteractionLevel } from '@utils/getInteractionLevel'
   import ImageWithLoader from '@components/ui/ImageWithLoader.vue'
 
   defineProps({
     gift: Object,
   })
-
-  function getInteractionLevel(gift, char) {
-    const value = getPreferenceValue(char, gift)
-    if (gift.isSsr) {
-      if (value > 180) return 'xl'
-      if (value > 120) return 'l'
-      return 'm'
-    } else {
-      if (value > 60) return 'xl'
-      if (value > 40) return 'l'
-      return 'm'
-    }
-  }
 </script>
 
 <style scoped>

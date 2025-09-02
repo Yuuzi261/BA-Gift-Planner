@@ -48,8 +48,9 @@
   import { ref } from 'vue'
   import { getAvatarUrl } from '@utils/getAvatarUrl'
   import { getGiftUrl } from '@utils/getGiftUrl'
-  import { getPreferenceValue } from '@utils/getPreferenceValue'
   import { getInteractionUrl } from '@utils/getInteractionUrl'
+  import { getPreferenceValue } from '@utils/getPreferenceValue'
+  import { getInteractionLevel } from '@utils/getInteractionLevel'
   import { useI18n } from '@composables/useI18n.js'
   import ImageWithLoader from '@components/ui/ImageWithLoader.vue'
   import FavoriteGiftsModal from '@components/modal/FavoriteGiftsModal.vue'
@@ -70,19 +71,6 @@
 
   const closeFavoriteGiftsModal = () => {
     isFavoriteGiftsModalVisible.value = false
-  }
-
-  function getInteractionLevel(gift, student) {
-    const value = getPreferenceValue(student, gift)
-    if (gift.isSsr) {
-      if (value > 180) return 'xl'
-      if (value > 120) return 'l'
-      return 'm'
-    } else {
-      if (value > 60) return 'xl'
-      if (value > 40) return 'l'
-      return 'm'
-    }
   }
 </script>
 
