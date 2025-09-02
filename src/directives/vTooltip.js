@@ -129,7 +129,7 @@ class TooltipManager {
             tooltipToHide.style.display = 'none'
           }
         },
-        { once: true },
+        { once: true }
       )
       this.currentTooltip = null
       this.currentElement = null

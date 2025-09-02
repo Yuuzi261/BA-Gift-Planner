@@ -16,11 +16,7 @@ export async function convertElementToJpg(element, options = {}) {
     return
   }
 
-  const {
-    fileName = 'download.jpg',
-    backgroundColor = '#ffffff',
-    useWebWorker = true
-  } = options
+  const { fileName = 'download.jpg', backgroundColor = '#ffffff', useWebWorker = true } = options
 
   let context = null
   try {
