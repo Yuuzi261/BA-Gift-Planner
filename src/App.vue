@@ -110,7 +110,7 @@
   const isSettingsModalVisible = ref(false)
   const isShareModalVisible = ref(false)
   const screenshotRenderStyle = ref('gift-recommendation') // Default style for screenshot rendering
-  const screenshotRenderSize = ref('1x') // Default size for screenshot rendering
+  const screenshotRenderSize = ref('1') // Default size for screenshot rendering
   const silentScreenshotRendererRef = ref(null)
   const isDownloadingScreenshot = ref(false)
 
