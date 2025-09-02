@@ -23,7 +23,7 @@
                 </div>
                 <div>
                   <h4 class="card-title">{{ t('shareModal.screenshotStyle') }}</h4>
-                  <p class="card-description">選擇截圖的呈現風格</p>
+                  <p class="card-description">{{ t('shareModal.screenshotStyleDesc') }}</p>
                 </div>
               </div>
               <div class="card-content">
@@ -41,7 +41,7 @@
                       <div class="option-icon">🎁</div>
                       <div class="option-text">
                         <span class="option-title">{{ t('shareModal.giftRecommendation') }}</span>
-                        <span class="option-desc">推薦禮物風格</span>
+                        <span class="option-desc">{{ t('shareModal.giftRecommendationDesc') }}</span>
                       </div>
                     </label>
                   </div>
@@ -58,7 +58,7 @@
                       <div class="option-icon">🥑</div>
                       <div class="option-text">
                         <span class="option-title">{{ t('shareModal.studentPreference') }}</span>
-                        <span class="option-desc">學生喜好風格</span>
+                        <span class="option-desc">{{ t('shareModal.studentPreferenceDesc') }}</span>
                       </div>
                     </label>
                   </div>
@@ -79,7 +79,7 @@
                 </div>
                 <div>
                   <h4 class="card-title">{{ t('shareModal.screenshotSize') }}</h4>
-                  <p class="card-description">調整截圖的解析度</p>
+                  <p class="card-description">{{ t('shareModal.screenshotSizeDesc') }}</p>
                 </div>
               </div>
               <div class="card-content">
@@ -96,7 +96,7 @@
                     <label for="size-1x" class="size-label">
                       <div class="size-preview size-1x"></div>
                       <span class="size-text">1x</span>
-                      <span class="size-desc">標準</span>
+                      <span class="size-desc">{{ t('shareModal.screenshotSizeNormal') }}</span>
                     </label>
                   </div>
                   <div class="size-option" :class="{ active: screenshotSize == 2 }">
@@ -111,7 +111,7 @@
                     <label for="size-2x" class="size-label">
                       <div class="size-preview size-2x"></div>
                       <span class="size-text">2x</span>
-                      <span class="size-desc">高清</span>
+                      <span class="size-desc">{{ t('shareModal.screenshotSizeClear') }}</span>
                     </label>
                   </div>
                   <div class="size-option" :class="{ active: screenshotSize == 4 }">
@@ -126,7 +126,7 @@
                     <label for="size-4x" class="size-label">
                       <div class="size-preview size-4x"></div>
                       <span class="size-text">4x</span>
-                      <span class="size-desc">超高清</span>
+                      <span class="size-desc">{{ t('shareModal.screenshotSizeSuperClear') }}</span>
                     </label>
                   </div>
                 </div>
@@ -141,7 +141,7 @@
                 <circle cx="12" cy="12" r="10" />
                 <path d="M12 6v6l4 2" />
               </svg>
-              <span>準備就緒，點擊下載</span>
+              <span>{{ t('shareModal.readyForDownload') }}</span>
             </div>
             <button class="download-button" @click="handleDownload">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

@@ -77,9 +77,17 @@
   "shareModal": {
     "title": "截圖設定",
     "screenshotStyle": "截圖樣式",
+    "screenshotStyleDesc": "選擇截圖的呈現風格",
     "giftRecommendation": "禮物推薦",
+    "giftRecommendationDesc": "展示各個禮物適合贈送的學生",
     "studentPreference": "學生喜好",
+    "studentPreferenceDesc": "展示各個學生喜愛的禮物",
     "screenshotSize": "圖片大小",
+    "screenshotSizeDesc": "越大細節越清晰但檔案較大",
+    "screenshotSizeNormal": "標準",
+    "screenshotSizeClear": "清晰",
+    "screenshotSizeSuperClear": "超清晰",
+    "readyForDownload": "準備就緒，點擊下載",
     "download": "下載"
   },
   "app": {

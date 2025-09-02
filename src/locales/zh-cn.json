@@ -77,9 +77,17 @@
   "shareModal": {
     "title": "截图设定",
     "screenshotStyle": "截图样式",
+    "screenshotStyleDesc": "选择截图的呈现风格",
     "giftRecommendation": "礼物推荐",
+    "giftRecommendationDesc": "展示各个礼物适合赠送的学生",
     "studentPreference": "学生喜好",
+    "studentPreferenceDesc": "展示各个学生喜爱的礼物",
     "screenshotSize": "图片大小",
+    "screenshotSizeDesc": "越大细节越清晰但档案较大",
+    "screenshotSizeNormal": "标准",
+    "screenshotSizeClear": "高清",
+    "screenshotSizeSuperClear": "超高清",
+    "readyForDownload": "准备就绪，点击下载",
     "download": "下载"
   },
   "app": {
