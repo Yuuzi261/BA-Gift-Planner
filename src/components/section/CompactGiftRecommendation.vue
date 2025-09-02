@@ -48,10 +48,6 @@
 </script>
 
 <style scoped>
-  .tooltip-xp {
-    display: flex;
-    align-items: center;
-  }
   .compact-gift-row {
     display: flex;
     align-items: center;
@@ -140,6 +136,11 @@
   .rec-any {
     background: #d1ecf1;
     color: #0c5460;
+  }
+  .tooltip-xp {
+    display: flex;
+    align-items: center;
+    gap: 3px;
   }
   .tooltip-icon {
     width: 24px;
