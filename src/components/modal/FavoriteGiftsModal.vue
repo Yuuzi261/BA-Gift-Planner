@@ -149,17 +149,6 @@
     flex-direction: column;
   }
 
-  @keyframes slide-down {
-    from {
-      transform: translateY(-30px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
   .modal-header {
     display: flex;
     justify-content: space-between;

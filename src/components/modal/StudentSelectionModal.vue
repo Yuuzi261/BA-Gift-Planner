@@ -326,17 +326,6 @@
     color: #e0e6ed;
   }
 
-  @keyframes slide-down {
-    from {
-      transform: translateY(-30px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
   .modal-header {
     padding: 15px 20px;
     border-bottom: 1px solid #dee2e6;

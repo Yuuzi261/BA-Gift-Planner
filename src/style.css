@@ -48,3 +48,15 @@ main {
 .os-theme-dark.os-scrollbar-vertical:hover {
   --os-size: 10px;
 }
+
+/* Animations for modals */
+@keyframes slide-down {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

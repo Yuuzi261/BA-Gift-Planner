@@ -121,17 +121,6 @@
     animation: slide-down 0.3s ease-out;
   }
 
-  @keyframes slide-down {
-    from {
-      transform: translateY(-30px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
   .dark-mode .modal-container {
     background: #1e2a38;
   }
