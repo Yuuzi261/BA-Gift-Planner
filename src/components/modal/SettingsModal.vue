@@ -64,6 +64,24 @@
                 <label for="lazyLoadToggle"></label>
               </div>
             </div>
+
+            <div class="setting-group">
+              <div class="setting-group-title-wrapper">
+                <h4 class="setting-group-title">{{ t('settingsModal.recommendationView') }}</h4>
+              </div>
+              <div class="toggle-switch">
+                <span class="toggle-label">{{
+                  recommendationView === 'student' ? t('settingsModal.studentCentric') : t('settingsModal.giftCentric')
+                }}</span>
+                <input
+                  id="recommendationViewToggle"
+                  type="checkbox"
+                  :checked="recommendationView === 'student'"
+                  @change="toggleRecommendationView"
+                />
+                <label for="recommendationViewToggle"></label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -95,9 +113,10 @@
   const {
     enableCharacterSelectorLazyLoad: isLazyLoadEnabled,
     showOnlyOptimalSolution: isShowOnlyOptimalSolutionEnabled,
+    recommendationView,
   } = storeToRefs(settingStore)
 
-  const { toggleCharacterSelectorLazyLoad, toggleShowOnlyOptimalSolution } = settingStore
+  const { toggleCharacterSelectorLazyLoad, toggleShowOnlyOptimalSolution, toggleRecommendationView } = settingStore
 
   const availableLanguages = [
     { code: 'zh-tw', name: '繁體中文' },

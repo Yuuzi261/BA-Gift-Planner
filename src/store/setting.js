@@ -10,6 +10,7 @@ export const useSettingStore = defineStore(
     const locale = ref(null)
     const showOnlyOptimalSolution = ref(false)
     const enableCharacterSelectorLazyLoad = ref(true)
+    const recommendationView = ref('gift') // 'gift' or 'student'
 
     // Getters (Computed)
     const isDarkMode = computed(() => {
@@ -34,6 +35,10 @@ export const useSettingStore = defineStore(
       showOnlyOptimalSolution.value = !showOnlyOptimalSolution.value
     }
 
+    function toggleRecommendationView() {
+      recommendationView.value = recommendationView.value === 'gift' ? 'student' : 'gift'
+    }
+
     function setLocale(newLocale) {
       locale.value = newLocale
     }
@@ -50,9 +55,11 @@ export const useSettingStore = defineStore(
       isDarkMode,
       enableCharacterSelectorLazyLoad,
       showOnlyOptimalSolution,
+      recommendationView,
       toggleTheme,
       toggleCharacterSelectorLazyLoad,
       toggleShowOnlyOptimalSolution,
+      toggleRecommendationView,
       setLocale,
       initThemeListener,
     }

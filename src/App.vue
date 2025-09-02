@@ -21,6 +21,7 @@
     <SilentScreenshotRenderer
       ref="silentScreenshotRendererRef"
       :recommended-gifts="recommendedGifts"
+      :student-recommendations="studentRecommendations"
       :generic-ssr-gifts="genericSsrGifts"
       :synthesis-gifts="synthesisGifts"
       :is-dark-mode="isDarkMode"
@@ -210,6 +211,28 @@
     return analyzedGifts.value
       .filter((gift) => gift.analysis.isRecommended)
       .sort((a, b) => b.analysis.maxValue - a.analysis.maxValue)
+  })
+
+  const studentRecommendations = computed(() => {
+    if (selectedStudents.value.length === 0) {
+      return []
+    }
+
+    const studentGiftMap = new Map()
+
+    selectedStudents.value.forEach((student) => {
+      studentGiftMap.set(student.id, { ...student, gifts: [] })
+    })
+
+    recommendedGifts.value.forEach((gift) => {
+      gift.analysis.characters.forEach((character) => {
+        if (studentGiftMap.has(character.id)) {
+          studentGiftMap.get(character.id).gifts.push(gift)
+        }
+      })
+    })
+
+    return Array.from(studentGiftMap.values()).filter((student) => student.gifts.length > 0)
   })
 
   function analyzeGift(gift, showOnlyOptimal) {
