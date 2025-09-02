@@ -284,7 +284,7 @@
     position: relative;
   }
 
-  .share-dropdown-menu {
+    .share-dropdown-menu {
     position: absolute;
     top: 100%;
     right: 0;
@@ -293,7 +293,6 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     z-index: 1001;
-    min-width: 150px;
     margin-top: 10px;
   }
 
@@ -328,6 +327,11 @@
     display: flex;
     align-items: center;
     width: 100%;
+    gap: 8px;
+  }
+
+  .dropdown-item span:last-child {
+    white-space: nowrap;
   }
 
   .dropdown-icon {
@@ -336,7 +340,6 @@
     justify-content: center;
     width: 24px;
     height: 24px;
-    margin-right: 10px;
   }
 
   .dropdown-icon img {
