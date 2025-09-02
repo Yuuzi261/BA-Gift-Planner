@@ -88,7 +88,8 @@
       "goodChoice": "颇受喜爱 (+{maxValue})",
       "recAny": "任意送给",
       "normalEffect": "效果一般 (+{maxValue})"
-    }
+    },
+    "downloading": "下载中..."
   },
   "giftRecommendation": {
     "bondXp": "羁绊经验: +{value}"

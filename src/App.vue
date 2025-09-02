@@ -36,6 +36,13 @@
     />
 
     <SettingsModal :is-visible="isSettingsModalVisible" @close="closeSettingsModal" />
+
+    <div v-if="isDownloadingScreenshot" class="loading-overlay">
+      <div class="spinner-container">
+        <half-circle-spinner :animation-duration="1000" :size="60" color="#fff" />
+        <p class="loading-text">{{ t('app.downloading') }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -59,6 +66,7 @@
   import { getPreferenceValue } from '@utils/getPreferenceValue'
   import { useI18n } from '@composables/useI18n'
   import { useShareableSelection } from '@composables/useShareableSelection'
+  import { HalfCircleSpinner } from 'epic-spinners'
 
   const { t, isLoaded, currentLocale: locale } = useI18n()
   const settingStore = useSettingStore()
@@ -95,6 +103,7 @@
   const isModalOpen = ref(false)
   const isSettingsModalVisible = ref(false)
   const silentScreenshotRendererRef = ref(null)
+  const isDownloadingScreenshot = ref(false)
 
   useShareableSelection(selectedStudentIds, studentsData)
 
@@ -164,8 +173,13 @@
   }
 
   async function handleDownloadShareScreenshot() {
-    if (silentScreenshotRendererRef.value) {
-      await silentScreenshotRendererRef.value.takeScreenshot()
+    isDownloadingScreenshot.value = true
+    try {
+      if (silentScreenshotRendererRef.value) {
+        await silentScreenshotRendererRef.value.takeScreenshot()
+      }
+    } finally {
+      isDownloadingScreenshot.value = false
     }
   }
 
@@ -292,5 +306,30 @@
     display: flex;
     flex-direction: column;
     min-height: calc(100vh - 80px - 40px); /* Subtract header(80px) & padding(40px) height */
+  }
+
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  .spinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .loading-text {
+    color: white;
+    font-size: 1.2em;
   }
 </style>
