@@ -75,11 +75,12 @@
     "system": "跟隨系統"
   },
   "shareModal": {
-    "title": "下載設定",
+    "title": "截圖設定",
     "screenshotStyle": "截圖樣式",
     "giftRecommendation": "禮物推薦",
     "studentPreference": "學生喜好",
-    "screenshotSize": "圖片大小"
+    "screenshotSize": "圖片大小",
+    "download": "下載"
   },
   "app": {
     "giftGridSection": {
