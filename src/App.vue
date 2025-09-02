@@ -214,25 +214,40 @@
   })
 
   const studentPreferences = computed(() => {
-    if (selectedStudents.value.length === 0) {
+    if (selectedStudents.value.length === 0 || giftsData.value.length === 0) {
       return []
     }
 
-    const studentGiftMap = new Map()
+    const giftMap = new Map(giftsData.value.map((g) => [`${g.id}-${g.isSsr}`, g]))
 
-    selectedStudents.value.forEach((student) => {
-      studentGiftMap.set(student.id, { ...student, gifts: [] })
-    })
+    return selectedStudents.value.map((student) => {
+      const favorSrIds = new Set([
+        ...student.favor.sr.m,
+        ...student.favor.sr.l,
+        ...student.favor.sr.xl,
+      ])
+      const favorSsrIds = new Set([...student.favor.ssr.l, ...student.favor.ssr.xl])
 
-    recommendedGifts.value.forEach((gift) => {
-      gift.analysis.characters.forEach((character) => {
-        if (studentGiftMap.has(character.id)) {
-          studentGiftMap.get(character.id).gifts.push(gift)
-        }
+      const likedGifts = []
+
+      favorSrIds.forEach((id) => {
+        const gift = giftMap.get(`${id}-false`)
+        if (gift) likedGifts.push(gift)
       })
-    })
 
-    return Array.from(studentGiftMap.values()).filter((student) => student.gifts.length > 0)
+      favorSsrIds.forEach((id) => {
+        const gift = giftMap.get(`${id}-true`)
+        if (gift) likedGifts.push(gift)
+      })
+
+      const sortedGifts = likedGifts.sort((a, b) => {
+        const prefA = getPreferenceValue(student, a)
+        const prefB = getPreferenceValue(student, b)
+        return prefB - prefA
+      })
+
+      return { id: student.id, favor: student.favor, gifts: sortedGifts }
+    })
   })
 
   function analyzeGift(gift, showOnlyOptimal) {
