@@ -122,6 +122,7 @@
     color: white;
     border-radius: 20px;
     font-size: 12px;
+    display: flex;
     align-items: center;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
