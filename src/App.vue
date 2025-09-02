@@ -221,11 +221,7 @@
     const giftMap = new Map(giftsData.value.map((g) => [`${g.id}-${g.isSsr}`, g]))
 
     return selectedStudents.value.map((student) => {
-      const favorSrIds = new Set([
-        ...student.favor.sr.m,
-        ...student.favor.sr.l,
-        ...student.favor.sr.xl,
-      ])
+      const favorSrIds = new Set([...student.favor.sr.m, ...student.favor.sr.l, ...student.favor.sr.xl])
       const favorSsrIds = new Set([...student.favor.ssr.l, ...student.favor.ssr.xl])
 
       const likedGifts = []

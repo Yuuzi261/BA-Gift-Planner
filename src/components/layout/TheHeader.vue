@@ -284,7 +284,7 @@
     position: relative;
   }
 
-    .share-dropdown-menu {
+  .share-dropdown-menu {
     position: absolute;
     top: 100%;
     right: 0;

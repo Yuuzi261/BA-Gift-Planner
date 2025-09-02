@@ -4,11 +4,7 @@
       <CompactGiftRecommendation v-for="gift in recommendedGifts" :key="`${gift.id}-${gift.isSsr}`" :gift="gift" />
     </div>
     <div v-else class="compact-student-preference-grid">
-      <CompactStudentPreference
-        v-for="student in studentPreferences"
-        :key="student.id"
-        :student="student"
-      />
+      <CompactStudentPreference v-for="student in studentPreferences" :key="student.id" :student="student" />
     </div>
     <CompactGiftGridSection :title="t('app.giftGridSection.generic')" :gifts="genericSsrGifts" />
     <CompactGiftGridSection :title="t('app.giftGridSection.synthesis')" :gifts="synthesisGifts" />
