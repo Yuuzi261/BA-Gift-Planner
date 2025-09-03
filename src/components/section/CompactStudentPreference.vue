@@ -10,7 +10,7 @@
           :key="gift.id"
           v-tooltip:fav-gift-tooltip="gift.name"
           class="compact-gift-grid-item"
-          :class="gift.isSsr ? 'gift-purple' : 'gift-yellow'"
+          :class="[gift.isSsr ? 'gift-purple' : 'gift-yellow', { 'non-recommended': !gift.isRecommended }]"
         >
           <ImageWithLoader
             :src="getGiftUrl(gift.id, gift.isSsr)"
@@ -102,6 +102,14 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     position: relative;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  .non-recommended {
+    opacity: 0.6;
+  }
+  .compact-gift-grid-item:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
   .gift-yellow {
     background: linear-gradient(45deg, #a97d51, #c7a579);
