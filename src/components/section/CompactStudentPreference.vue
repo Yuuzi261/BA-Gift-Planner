@@ -105,7 +105,8 @@
     transition: all 0.2s ease-in-out;
   }
   .non-recommended {
-    opacity: 0.6;
+    opacity: 0.4;
+    filter: grayscale(50%);
   }
   .compact-gift-grid-item:hover {
     transform: scale(1.1);
