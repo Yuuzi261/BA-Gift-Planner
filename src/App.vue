@@ -26,6 +26,7 @@
       @close="closeShareModal"
       @download-screenshot="handleDownloadShareScreenshot"
     />
+    <MigrationModal />
   </div>
 </template>
 
@@ -43,6 +44,7 @@
   import StudentSelectionModal from '@components/modal/StudentSelectionModal.vue'
   import SettingsModal from '@components/modal/SettingsModal.vue'
   import ShareModal from '@components/modal/ShareModal.vue'
+  import MigrationModal from '@components/modal/MigrationModal.vue'
   import { useI18n } from '@composables/useI18n'
 
   const { t, isLoaded, currentLocale: locale } = useI18n()

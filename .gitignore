@@ -25,6 +25,10 @@ dist-ssr
 
 # Environment variables
 .env
+.dev.vars
 
 # Specification documents
 GEMINI.md
+
+# Backend
+.wrangler/

@@ -472,5 +472,19 @@
       "264": "Shun (Swimsuit)",
       "265": "Kisaki (Swimsuit)"
     }
+  },
+  "migration": {
+    "title": "⚠️ Important Migration Notice",
+    "description1": "To provide a more stable and faster experience, this site has migrated to a new server and upgraded to a cloud-sync architecture!",
+    "description2": "Your save data can now automatically sync across devices, no longer limited to a single browser.",
+    "newUrlTitle": "New Website URL:",
+    "stepsTitle": "👉 Migration Steps:",
+    "step1": "1. Click the \"Export Legacy Data\" button below to download your save.",
+    "step2": "2. Go to the new website's \"Settings -> Data Management\", and click \"Import Data\" for a seamless transition!",
+    "step3": "3. (Optional) Log in with your Google account on the new website to enable cross-device cloud sync.",
+    "exportBtn": "📦 Export Legacy Data",
+    "goToNewBtn": "🚀 Go to New Website",
+    "exportSuccess": "Data exported! Please import it on the new website.",
+    "exportFailed": "Export failed"
   }
 }
