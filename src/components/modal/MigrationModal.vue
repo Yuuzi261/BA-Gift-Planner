@@ -10,8 +10,8 @@
 
         <div class="migration-box">
           <h3>{{ t('migration.newUrlTitle') }}</h3>
-          <a href="https://ba-gift-planner.ba-tools.cc" target="_blank" class="new-url">
-            https://ba-gift-planner.ba-tools.cc
+          <a href="https://gift-planner.ba-tools.cc" target="_blank" class="new-url">
+            https://gift-planner.ba-tools.cc
           </a>
         </div>
 
@@ -28,7 +28,7 @@
             <span>{{ t('migration.exportBtn') }}</span>
           </button>
           <a
-            href="https://ba-gift-planner.ba-tools.cc"
+            href="https://gift-planner.ba-tools.cc"
             target="_blank"
             class="btn-skew btn-text btn-blue"
             style="text-decoration: none"
