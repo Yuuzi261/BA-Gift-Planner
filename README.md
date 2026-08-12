@@ -1,3 +1,5 @@
+
+
 <p>
   English | 
   <a href="./docs/README.zh-TW.md">繁體中文</a> | 
@@ -159,7 +161,7 @@ Please ensure you have [Node.js](https://nodejs.org/) (version 18.x or higher is
 | `npm run dev`        | Starts the local development server with hot-reloading.             |
 | `npm run dev:worker` | Starts the local backend worker using Wrangler.                     |
 | `npm run db:init`    | Initializes the local D1 SQLite database.                           |
-| `npm run build`      | Bundles the project into the dist folder and compresses JSON files. |
+| `npm run build`      | Bundles the project into the dist folder and generates `sitemap.xml`. |
 | `npm run preview`    | Previews the production build locally.                              |
 | `npm run format`     | Formats all code with Prettier.                                     |
 | `npm run lint`       | Lints and fixes code style issues with ESLint.                      |
