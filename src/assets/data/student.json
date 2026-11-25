@@ -6694,5 +6694,53 @@
         "xl": [5]
       }
     }
+  },
+  {
+    "id": 280,
+    "gid": 10154,
+    "school": "WildHunt",
+    "attackType": "Sonic",
+    "defenseType": "Special",
+    "weapon": "SMG",
+    "position": "FRONT",
+    "type": 0,
+    "role": ["Tank"],
+    "rarity": 3,
+    "obtainMethod": "Regular",
+    "favor": {
+      "sr": {
+        "m": [0, 1, 17, 19, 29],
+        "l": [30],
+        "xl": []
+      },
+      "ssr": {
+        "l": [3],
+        "xl": [10]
+      }
+    }
+  },
+  {
+    "id": 281,
+    "gid": 20064,
+    "school": "WildHunt",
+    "attackType": "Piercing",
+    "defenseType": "Special",
+    "weapon": "HG",
+    "position": "BACK",
+    "type": 1,
+    "role": ["Support"],
+    "rarity": 3,
+    "obtainMethod": "Regular",
+    "favor": {
+      "sr": {
+        "m": [3, 4, 15, 23, 32],
+        "l": [9, 21],
+        "xl": []
+      },
+      "ssr": {
+        "l": [1],
+        "xl": [12]
+      }
+    }
   }
 ]
